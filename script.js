@@ -10,41 +10,44 @@ class Movie {
 }
 
 //add a movie OBJECT to the allMovies array
-function addMovie(movie) {
-    allMovies[allMovies.length] = movie;
+let addMovie = (movie) => {
+    allMovies.push(new Movie(movie.title,movie.rating,movie.haveWatched));
+    console.log("A new movie is added");
 }
 
 //iterate through all elements of allMovies array
 //print out to console in a correct format
 //print out the total number of movies in allMovies array
 let printMovies = () => {
+    console.log("Printing all movies....");
     for (let i = 0; i < allMovies.length; i++){
-        console.log(allMovies[i]);
-        console.log(" " + allMovies[i].title + ", rating of " + allMovies[i].rating + ", haveWatvhed: " + allMovies[i].haveWatched + "/n");
-        console.log("/n You have " + allMovies.length + " movies in total\n");
+        console.log(allMovies[i].title + ", rating of " + allMovies[i].rating + ", havewatched: " + allMovies[i].haveWatched);
     }
+    console.log('');
+    console.log("You have " + allMovies.length + " movies in total");
 }
 
 //print out to console, only the movies that has a rating higher than rating(argument)
 //print out the total number of matches
 let highRatings = (rating) => {
-    let print  = "printing movie that has a rating higher than " + rating + "/n";
+    console.log("printing movie that has a rating higher than " + rating);
     let count = 0;
-    for (let i = 0; i < allMovies.length; i++){
-        if (allMovies[i] >= rating){
-            console.log(" " + allMovies[i].title + ", rating of " + allMovies[i].rating + ", haveWatvhed: " + allMovies[i].haveWatched + "/n");
-    count++;
+        for(let i=0; i < allMovies.length; i++){
+            if(allMovies[i].rating > rating){
+                count++;
+                console.log(allMovies[i].title + " has a rating of " + allMovies[i].rating);
+            }
         }
-    }
-    console.log( "/n In total, there are " + count + "matches \n");
+    console.log("In total, there are " + count + " matches");
 }
+    
 
 
 //Toggle the 'haveWatched' property of the specified movie 
 let changeWatched = (title) => {
     console.log("changing the status of the movie...");
     for( let i=0; i < allMovies.length; i++ ){
-        if( allMovies[i].title == title){
+        if( allMovies[i].title === title){
             allMovies[i].haveWatched = !allMovies[i].haveWatched;
         }
     }
